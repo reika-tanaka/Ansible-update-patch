@@ -7,11 +7,11 @@
 windows_host_ip
 
 [windows:vars]
-ansible_user=clearcyber\\administrator
-ansible_password=ClearCyber25%
-ansible_connection=ssh
-ansible_port=22
-ansible_shell_type=Powershell
-ansible_become=no
-ansible_ssh_common_args='o StrictHostKeyChecking=no'
+ansible_user = clearcyber\\administrator
+ansible_password = ClearCyber25%
+ansible_connection = ssh
+ansible_port = 22
+ansible_shell_type = Powershell
+ansible_become = no
+ansible_ssh_common_args = 'o StrictHostKeyChecking=no'
 
