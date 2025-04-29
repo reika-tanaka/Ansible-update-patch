@@ -1,0 +1,19 @@
+
+---
+- name: Create a text file on server
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Create a simple text file
+      ansible.builtin.copy:
+        dest: C:\Users\Desktop
+        content: |
+          Hello,everyone!
+          This file was created by Ansible (TEST).
+        owner: clearcyber\\administrator
+        group: clcy-dtws-0002
+               clcy-dtws-0001
+               clcy-dtws-0003
+               clcy-dtws-0004
+        mode: '0644'
