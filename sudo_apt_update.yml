@@ -1,0 +1,13 @@
+
+---
+- name: Run apt update on servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt package index
+      apt: 
+        update_cache: yes
+    
+    - name: Upgrade installed packages
+      apt:
+        upgrade: dist
