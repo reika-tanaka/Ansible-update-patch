@@ -1,0 +1,24 @@
+
+---
+- name: set windows wallpaper using a file from WSL
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    wsl_wallpaper_path: "/home/clearcyberadmin/logo.bmp"
+    windows_wallpaper_path: "C:\\Temp\\logo.bmp"
+
+  tasks:
+    - name: Ensure C:Temp exists
+      shell: powershell.exe -Command "New-Item -ItemType Directory -Force -Path 'C:\\Temp'"
+      ignore_errors: yes
+
+    - name: Copy wallpaper from WSL to Windows
+      shell: cp {{wsl_wallpaper_path}} /mnt/c/Temp/logo.bmp
+
+    - name: Set the wallpaper via Powershell
+      shell: >
+        powershell.exe -Command "(Add-Type '[DllImport(\"user32.dll\")]
+        public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);'
+        -Name a -Pas)::SystemParametersInfo(20,0, '{{ windows_wallpaper_path }}', 3)"
